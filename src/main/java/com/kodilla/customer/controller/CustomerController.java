@@ -1,6 +1,7 @@
 package com.kodilla.customer.controller;
 
 import com.kodilla.customer.connector.response.AccountDto;
+import com.kodilla.customer.connector.response.CardDto;
 import com.kodilla.customer.controller.response.GetCustomerProductsResponse;
 import com.kodilla.customer.domain.Customer;
 import com.kodilla.customer.domain.CustomerDto;
@@ -48,11 +49,14 @@ public class CustomerController {
 
 
         List<AccountDto> customerAccounts = dbProductService.findCustomerAccounts(idCustomer);
-        
+        List<CardDto> customerCards = dbProductService.findCustomerCards(idCustomer);
+
         return GetCustomerProductsResponse.builder()
                 .customerId(customerDto.getId())
                 .fullName(customerDto.getFirstName() +" "+customerDto.getLastName())
-                .accounts(customerAccounts).build();
+                .accounts(customerAccounts)
+                .cards(customerCards)
+                .build();
 
     }
 }
